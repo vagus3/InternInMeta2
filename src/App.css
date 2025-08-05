@@ -1,38 +1,32 @@
-.App {
-  text-align: center;
+.product-list-container {
+  padding: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto; /* 중앙 정렬 */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.list-header {
+  margin-bottom: 1.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.list-header h1 {
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.list-header p {
+  margin: 0;
+  color: #52525b;
 }
 
-.App-link {
-  color: #61dafb;
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2개의 열을 만듭니다 */
+  gap: 1rem; /* 카드 사이의 간격 */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/* 모바일 화면 대응 (화면이 640px보다 작아지면 1열로 변경) */
+@media (max-width: 640px) {
+  .product-grid {
+    grid-template-columns: 1fr;
   }
 }

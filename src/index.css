@@ -5,6 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f4f5; /* 전체 페이지 배경색 */
+}
+
+* {
+  box-sizing: border-box;
 }
 
 code {
