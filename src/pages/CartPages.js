@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CartPages.css';
+import Image from '../Image';
 
 function CartPage({ cartItems, setCartItems }) {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ function CartPage({ cartItems, setCartItems }) {
         <div className="cart-items-container">
           {cartItems.map(item => (
             <div key={item.id} className="cart-item">
-              <img src={item.image} alt={item.name} className="cart-item-image"/>
+              <Image src={item.image} alt={item.name} className="cart-item-image"/>
               <div className="cart-item-info">
                 <span className="cart-item-brand">{item.brand}</span>
                 <span className="cart-item-price">{item.price.toLocaleString()}원</span>

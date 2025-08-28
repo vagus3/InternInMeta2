@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './ProductCard.css';
+import Image from './Image';
 
 function ProductCard({ product, onAddToCart }) { 
 
   const { image, brand, name, price } = product;
   return (
     <div className="product-card">
-      <img src={image} alt={name} className="product-image" />
+      <Image src={image} alt={name} className="product-image" />
       <div className="product-info">
         <h1>{brand}</h1>
         <p>{name}</p>
-        <p className="product-price">{product.price.toLocaleString()}원</p>
+        <p className="product-price">{price.toLocaleString()}원</p>
         <div className="product-actions">
           <button className="add-to-cart-btn" onClick={() => onAddToCart(product)}>
             담기
