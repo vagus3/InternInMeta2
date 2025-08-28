@@ -1,4 +1,6 @@
 .App{
+  max-width: 512px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -31,9 +33,9 @@
   gap: 1rem;
 }
 
-/* 모바일 화면 대응 (화면이 640px보다 작아지면 1열로 변경) */
+/* 모바일 화면 대응 (화면이 640px보다 작아지면 1열로 변경)
 @media (max-width: 640px) {
   .product-grid {
     grid-template-columns: 1fr;
   }
-}
+} */

@@ -10,12 +10,12 @@ import './App.css';
 import NavbarIF from './NavbarIF';
 
 const Products = [
-  { id: 1, brand: '브랜드A', name: '편안하고 착용감이 좋은 신발', price: 35000, image: 'https://i.ibb.co/9vVzTrs/image.png' },
-  { id: 2, brand: '브랜드A', name: '힙한 컬러가 매력적인 신발', price: 25000, image: 'https://i.ibb.co/3sckqvv/image.png' },
-  { id: 3, brand: '브랜드B', name: '편안하고 착용감이 좋은 신발', price: 35000, image: 'https://i.ibb.co/VvZg3d4/image.png' },
-  { id: 4, brand: '브랜드B', name: '힙한 컬러가 매력적인 신발', price: 35000, image: 'https://i.ibb.co/N2z0WnQ/image.png' },
-  { id: 5, brand: '브랜드C', name: '편안하고 착용감이 좋은 신발', price: 35000, image: 'https://i.ibb.co/vHZk1j0/image.png' },
-  { id: 6, brand: '브랜드C', name: '힙한 컬러가 매력적인 신발', price: 35000, image: 'https://i.ibb.co/d2Bv8qr/image.png' },
+  { id: 1, brand: '브랜드A', name: '편안하고 착용감이 좋은 신발', price: 35000, image: '/images/shoe1.png' },
+  { id: 2, brand: '브랜드A', name: '힙한 컬러가 매력적인 신발', price: 25000, image: '/images/shoe11.png' },
+  { id: 3, brand: '브랜드B', name: '편안하고 착용감이 좋은 신발', price: 35000, image: '/images/shoe2.png' },
+  { id: 4, brand: '브랜드B', name: '힙한 컬러가 매력적인 신발', price: 35000, image: '/images/shoe22.png' },
+  { id: 5, brand: '브랜드C', name: '편안하고 착용감이 좋은 신발', price: 35000, image: '/images/shoe3.png' },
+  { id: 6, brand: '브랜드C', name: '힙한 컬러가 매력적인 신발', price: 35000, image: '/images/shoe33.png' },
 ];
 
 function App() {
