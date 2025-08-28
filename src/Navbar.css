@@ -42,7 +42,6 @@
   font-weight: bold;
 }
 
-/* src/components/Navbar.css 에 추가 */
 .navbar-logo-link, .navbar-cart-link {
   text-decoration: none;
   color: inherit;

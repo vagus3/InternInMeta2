@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './ProductCard.css';
 
 function ProductCard({ product, onAddToCart }) { 
@@ -6,13 +7,18 @@ function ProductCard({ product, onAddToCart }) {
     <div className="product-card">
       <img src={product.image} alt={product.name} className="product-image" />
       <div className="product-info">
-        {/* ...기존 코드... */}
+        <h1>{product.brand}</h1>
+        <p>{product.name}</p>
         <p className="product-price">{product.price.toLocaleString()}원</p>
-        {/* 버튼 클릭 시 onAddToCart 함수에 현재 product 객체를 전달 */}
-        <button className="add-to-cart-btn" onClick={() => onAddToCart(product)}>
-          담기
-        </button>
-      </div>
+        <div className="product-actions">
+          <button className="add-to-cart-btn" onClick={() => onAddToCart(product)}>
+            담기
+          </button>
+          <Link to="/cart" className="purchase-btn">
+            구매
+          </Link>
+        </div>
+      </div> 
     </div>
   );
 }

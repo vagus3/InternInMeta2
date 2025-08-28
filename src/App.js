@@ -3,9 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './Navbar';
 import ProductCard from './ProductCard';
 import CartPage from './pages/CartPages';
+import CardListPage from './pages/CardListPage';
+import CardEnrollPages from './pages/CardEnrollPages';
+import PaymentSuccessPage from './pages/PaymentSuccessPage';
 import './App.css';
+import NavbarIF from './NavbarIF';
 
-// 상품 데이터
 const Products = [
   { id: 1, brand: '브랜드A', name: '편안하고 착용감이 좋은 신발', price: 35000, image: 'https://i.ibb.co/9vVzTrs/image.png' },
   { id: 2, brand: '브랜드A', name: '힙한 컬러가 매력적인 신발', price: 25000, image: 'https://i.ibb.co/3sckqvv/image.png' },
@@ -16,31 +19,55 @@ const Products = [
 ];
 
 function App() {
-  // 1. 장바구니 상태를 상품 객체의 '배열'로 관리
   const [cartItems, setCartItems] = useState([]);
   const [products] = useState(Products);
 
-  // 2. 장바구니에 상품을 추가하는 함수 (어떤 상품인지 product를 받아야 함)
-  // 중복 방지를 위해 이미 있는 상품이면 추가하지 않음 (개수 추가는 나중 단계)
+  // 장바구니에 상품을 추가하는 함수 (어떤 상품인지 product를 받아야 함)
   const handleAddToCart = (productToAdd) => {
-    // 고유한 상품 추가를 위해 id를 사용합니다.
-    // 수량 증가를 원하면 로직을 변경해야 합니다.
-    const uniqueId = `${productToAdd.id}-${Date.now()}`;
-    setCartItems(prevItems => [...prevItems, { ...productToAdd, id: uniqueId }]);
+      const existingItem = cartItems.find(item => item.id === productToAdd.id);
+
+  if (existingItem) {
+    // 상품이 이미 있으면 수량만 증가
+    const updatedCart = cartItems.map(item =>
+      item.id === productToAdd.id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    );
+    setCartItems(updatedCart);
+  } else {
+    // 상품이 없으면 quantity: 1 과 함께 새로 추가
+    setCartItems([...cartItems, { ...productToAdd, quantity: 1 }]);
+      }
+  };
+
+  const [cards, setCards] = useState([]);
+  const [page, setPage] = useState('list');
+
+  const goToEnrollPage = () => {
+    setPage('add');
+  };
+
+  const goToListPage = () => {
+    setPage('list');
+  };
+
+  const handleAddCard = (newCard) => {
+    // id는 실제 서비스라면 서버에서 부여하거나 UUID 등을 사용합니다.
+    const cardWithId = { ...newCard, id: Date.now() };
+    setCards([...cards, cardWithId]);
+    goToListPage();
   };
 
   return (
     <div className="App">
-      {/* Navbar에는 장바구니에 담긴 상품 '개수'를 전달 */}
-      <Navbar cartItemCount={cartItems.length} />
-      
-      {/* 3. URL 경로에 따라 다른 페이지를 보여주는 Routes 설정 */}
+      {/* <Navbar cartItemCount={cartItems.length} /> */}
       <Routes>
-        {/* 기본 경로 ("/") */}
+        <Route element={<NavbarIF cartItemCount={cartItems.length} />}>
         <Route path="/" element={
           <main className="product-list-container">
             <header className="list-header">
               <h1>신발 상품 목록</h1>
+              <br />
               <p>현재 {products.length}개의 상품이 있습니다.</p>
             </header>
             <div className="product-grid">
@@ -48,18 +75,29 @@ function App() {
                 <ProductCard 
                   key={product.id} 
                   product={product} 
-                  onAddToCart={handleAddToCart} // 함수 전달
+                  onAddToCart={handleAddToCart}
                 />
               ))}
             </div>
           </main>
         } />
-
-        {/* 장바구니 경로 ("/cart") */}
         <Route path="/cart" element={
           <CartPage cartItems={cartItems} setCartItems={setCartItems} />
         } />
+        </Route>
+
+        <Route path="/cards" element=
+          {<CardListPage cards={cards} />} 
+        />
+        <Route path="/cards/add" element=
+          {<CardEnrollPages onCardSubmit={handleAddCard} />} 
+        />
+        <Route 
+          path="/payment/success" 
+          element={<PaymentSuccessPage setCartItems={setCartItems} />} 
+        />
       </Routes>
+
     </div>
   );
 }

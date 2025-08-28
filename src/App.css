@@ -1,7 +1,14 @@
+.App{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 50vw;
+}
+
 .product-list-container {
   padding: 1.5rem;
-  max-width: 800px;
-  margin: 0 auto; /* 중앙 정렬 */
+  /* max-width: 800px;
+  margin: 0 auto; 중앙 정렬 */
 }
 
 .list-header {
@@ -21,7 +28,7 @@
 .product-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2개의 열을 만듭니다 */
-  gap: 1rem; /* 카드 사이의 간격 */
+  gap: 1rem;
 }
 
 /* 모바일 화면 대응 (화면이 640px보다 작아지면 1열로 변경) */

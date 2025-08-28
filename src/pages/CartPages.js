@@ -1,23 +1,55 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // 페이지 이동을 위한 Link 컴포넌트
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CartPages.css';
 
-// App.js로부터 cartItems와 setCartItems를 props로 받음
 function CartPage({ cartItems, setCartItems }) {
+  const navigate = useNavigate();
 
-  // 장바구니에서 상품 제거하는 함수
-  const handleRemoveItem = (idToRemove) => {
-    // idToRemove와 다른 아이템들만 남겨서 새로운 배열 생성
-    setCartItems(cartItems.filter(item => item.id !== idToRemove));
+  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  const handleAddItem = (idToAdd) => {
+    const updatedCart = cartItems.map(item =>
+      item.id === idToAdd ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    setCartItems(updatedCart);
   };
-  
-  // 총 가격 계산
-  const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+
+  const handleRemoveItem = (idToRemove) => {
+    const itemToRemove = cartItems.find(item => item.id === idToRemove);
+
+    if (itemToRemove.quantity === 1) {
+      setCartItems(cartItems.filter(item => item.id !== idToRemove));
+    } else {
+      const updatedCart = cartItems.map(item =>
+        item.id === idToRemove ? { ...item, quantity: item.quantity - 1 } : item
+      );
+      setCartItems(updatedCart);
+    }
+  };
+
+  // 배송비 계산 로직
+  const itemsPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const [tpPrice, setTpPrice] = useState(3000);
+
+  useEffect(() => {
+    setTpPrice(itemsPrice >= 100000 ? 0 : 3000);
+  }, [itemsPrice]);
+
+  const totalPrice = itemsPrice + tpPrice;
+
+  const goToPayment = () => {
+    navigate('/cards', {
+      state:{
+        totalPrice: totalPrice,
+        totalQuantity: totalQuantity
+      }
+    });
+  };
 
   return (
     <div className="cart-page">
       <h1 className="cart-title">장바구니</h1>
-      <Link to="/" className="back-link">← 쇼핑 계속하기</Link>
+      <h4>현재 {totalQuantity} 개의 상품이 있습니다.</h4>
       
       {cartItems.length === 0 ? (
         <p className="empty-cart-message">장바구니가 비었습니다.</p>
@@ -28,15 +60,30 @@ function CartPage({ cartItems, setCartItems }) {
               <img src={item.image} alt={item.name} className="cart-item-image"/>
               <div className="cart-item-info">
                 <span className="cart-item-brand">{item.brand}</span>
-                <span className="cart-item-name">{item.name}</span>
                 <span className="cart-item-price">{item.price.toLocaleString()}원</span>
+                <div className="quantity-controls">
+                  <button onClick={() => handleRemoveItem(item.id)} className="remove-btn">－</button>
+                  <span className="quantity-display">{item.quantity}</span>
+                  <button onClick={() => handleAddItem(item.id)} className="add-btn">＋</button>
+                </div>
               </div>
-              <button onClick={() => handleRemoveItem(item.id)} className="remove-btn">삭제</button>
             </div>
           ))}
+
+          <div className="items-price">
+            <strong>상품 금액:</strong>
+            <span className="items-cost">{itemsPrice.toLocaleString()}원</span>
+          </div>
+          <div className="tp-price">
+            <strong>배송비:</strong>
+            <span className="tp-cost">{tpPrice.toLocaleString()}원</span>
+          </div>
           <div className="cart-summary">
-            <strong>총 주문금액:</strong>
+            <strong>총 금액:</strong>
             <span className="total-price">{totalPrice.toLocaleString()}원</span>
+          </div>
+          <div className="payment">
+            <div className="payment-service" onClick={goToPayment}>결제하기</div>
           </div>
         </div>
       )}

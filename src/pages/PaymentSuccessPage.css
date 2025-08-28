@@ -1,0 +1,56 @@
+.success-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.success-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.success-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.success-message {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.total-amount-section {
+  width: 100%;
+  margin: 1.5rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.total-amount-label {
+  display: block;
+  color: #6b7280;
+}
+
+.total-amount-value {
+  display: block;
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.back-to-list-button {
+  width: 100%;
+  padding: 1.25rem;
+  background-color: #fde047;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+}

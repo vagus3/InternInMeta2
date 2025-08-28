@@ -1,7 +1,7 @@
 .cart-page {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 1.5rem;
+  margin: 2rem 2rem 2rem 1rem;
+  padding: 1.5rem 1.5rem 1.5rem 1rem;
+  text-align: left;
 }
 .cart-title {
   font-size: 2rem;
@@ -47,13 +47,48 @@
 .cart-item-brand { font-weight: bold; }
 .cart-item-name { color: #52525b; margin: 0.25rem 0; }
 .cart-item-price { font-weight: bold; }
-.remove-btn {
-  background: #ef4444;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+
+.add-btn {
+  color: black;
+  border: none; 
+  padding: 2px 4px 2px 4px;
+  border-radius: 20px;
   cursor: pointer;
+}
+
+.remove-btn {
+  color: black;
+  border: none;
+  padding: 2px 4px 2px 4px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.items-price {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e4e4e7;
+  display: flex;
+  justify-content: space-between;
+  /* flex-direction: column; */
+  align-items: start;
+  font-size: 1.2rem;
+}
+.items-cost {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.tp-price{
+  display: flex;
+  justify-content: space-between;
+  /* flex-direction: column; */
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.tp-cost {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 .cart-summary {
   margin-top: 2rem;
@@ -67,4 +102,23 @@
 .total-price {
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+.payment{
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.payment-service{
+  background-color: yellow;
+  width: 90%; 
+  margin-top: 1.5rem;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  border-radius: 30px; 
+  font-size: 1.2rem;
+  border-color: yellow;
+  cursor: pointer;
 }
